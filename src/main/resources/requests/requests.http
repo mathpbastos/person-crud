@@ -1,0 +1,28 @@
+POST http://localhost:8080/person/new
+Content-Type: application/json
+
+{
+    "firstName":"João Marcos",
+    "lastName":"Souza",
+    "emailAddress":"jmsouza@mail.com.br",
+    "phoneNumber":"(27) 9 8545 3364"
+}
+
+###
+
+POST http://localhost:8080/person/new
+Content-Type: application/json
+
+{
+    "firstName":"Maria Fernanda",
+    "lastName":"Gonçalves",
+    "emailAddress":"mfconcalves@mail.com.br",
+    "phoneNumber":"(27) 9 9877 2312"
+}
+
+###
+GET http://localhost:8080/person/all
+
+###
+
+GET http://localhost:8080/person/2
