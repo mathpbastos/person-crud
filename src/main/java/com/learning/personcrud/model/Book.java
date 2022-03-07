@@ -5,47 +5,44 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(
-    name="person",
-    uniqueConstraints = {@UniqueConstraint(
-        name = "email_unique",
-        columnNames = "emailAddress"
-    )}
+    name = "books"
 )
-public class Person {
+public class Book {
     
     @Id
     @GeneratedValue
     private Long id;
-    
-    @Column(
-        nullable = false
-    )
-    private String firstName;
 
     @Column(
         nullable = false
     )
-    private String lastName;
+    private String name;
     
-    /*@Column(
+    @Column(
         nullable = false
-    )*/
-    private String emailAddress;
-
-    private String phoneNumber;
-
+    )
+    private String author;
+    
+    @Column(
+        nullable = false
+    )
+    private String publisher;
+    
+    @Column(
+        nullable = false
+    )
+    private String isbn;
 
 }

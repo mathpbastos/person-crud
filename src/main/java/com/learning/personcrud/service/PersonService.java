@@ -25,7 +25,26 @@ public class PersonService {
 
     public Person findPersonById(Long personId){
         return personRepository.findById(personId)
-            .orElseThrow(() -> new IllegalStateException("Person with Id: " + personId + "not found."));
+            .orElseThrow(() -> new IllegalStateException("Person with Id: " + personId + " not found."));
+    }
+    
+    public String updatePerson(Long personId, Person updatedPerson) {
+    	Person person = personRepository.findById(personId)
+    		.orElseThrow(() -> new IllegalStateException("Person with Id: " + personId + "not found."));
+    	
+    	person.setFirstName(updatedPerson.getFirstName());
+    	person.setLastName(updatedPerson.getLastName());
+    	person.setEmailAddress(updatedPerson.getEmailAddress());
+    	person.setPhoneNumber(updatedPerson.getPhoneNumber());
+    	
+    	personRepository.save(person);
+    	
+    	return "Person updated successfully.";
+    }
+    
+    public String deletePerson(Long personId) {
+    	personRepository.deleteById(personId);
+    	return "Person deleted successfully.";
     }
 
 }

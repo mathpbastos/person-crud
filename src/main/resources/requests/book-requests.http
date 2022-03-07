@@ -1,0 +1,28 @@
+POST http://localhost:8080/books/new
+Content-Type: application/json
+
+{
+    "name": "Alice no País das Maravilhas",
+    "author": "Lewis Caroll",
+    "publisher": "Intrínseca",
+    "isbn": "978-3-16-148410-0"
+}
+
+###
+
+POST http://localhost:8080/books/new
+Content-Type: application/json
+
+{
+    "name": "Percy Jackson",
+    "author": "Rick Riordan",
+    "publisher": "Intrínseca",
+    "isbn": "488-1-15-121435-0"
+}
+
+###
+
+GET http://localhost:8080/books/all
+
+###
+GET http://localhost:8080/books/2
