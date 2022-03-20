@@ -1,7 +1,13 @@
-spring.datasource.url=jdbc:postgresql://localhost:5432/library
-spring.datasource.username=developer
-spring.datasource.password=password
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-spring.jpa.properties.hibernate.format_sql=true
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/library
+    password: letmein
+    username: dev
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  properties:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      format_sql: true
