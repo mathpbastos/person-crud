@@ -1,4 +1,4 @@
-POST http://localhost:8080/person/new
+POST http://localhost:8080/person/save
 Content-Type: application/json
 
 {
@@ -10,7 +10,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8080/person/new
+POST http://localhost:8080/person/save
 Content-Type: application/json
 
 {
