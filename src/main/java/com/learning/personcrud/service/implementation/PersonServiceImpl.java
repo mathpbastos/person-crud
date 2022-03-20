@@ -1,50 +1,58 @@
-package com.learning.personcrud.service;
+package com.learning.personcrud.service.implementation;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.learning.personcrud.model.Person;
 import com.learning.personcrud.repository.PersonRepository;
 
+import com.learning.personcrud.service.PersonService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
-public class PersonService {
-    
+@Transactional
+@Slf4j
+@RequiredArgsConstructor
+public class PersonServiceImpl implements PersonService {
+
     @Autowired
-    private PersonRepository personRepository;
-    
-    public String savePerson(Person person){
-        personRepository.save(person);
-        return "Person saved successfully!";
+    private final PersonRepository personRepository;
+
+    @Override
+    public Person createPerson(Person person){
+        log.info("New person saved: {}");
+        return personRepository.save(person);
     }
 
-    public List<Person> findAllPersons(){
-        return personRepository.findAll();
+    @Override
+    public Collection<Person> listAllPersons(int limit){
+        log.info("Listing all persons...");
+        return personRepository.findAll(PageRequest.of(0, limit)).toList();
     }
 
-    public Person findPersonById(Long personId){
-        return personRepository.findById(personId)
-            .orElseThrow(() -> new IllegalStateException("Person with Id: " + personId + " not found."));
+    @Override
+    public Person getPerson(Long personId){
+        log.info("Getting person with ID: {}");
+        return personRepository.findById(personId).get();
     }
-    
-    public String updatePerson(Long personId, Person updatedPerson) {
-    	Person person = personRepository.findById(personId)
-    		.orElseThrow(() -> new IllegalStateException("Person with Id: " + personId + "not found."));
-    	
-    	person.setFirstName(updatedPerson.getFirstName());
-    	person.setLastName(updatedPerson.getLastName());
-    	person.setEmailAddress(updatedPerson.getEmailAddress());
-    	person.setPhoneNumber(updatedPerson.getPhoneNumber());
-    	
-    	personRepository.save(person);
-    	
-    	return "Person updated successfully.";
+
+    /*
+    public Person updatePerson(Person updatedPerson) {
+    	log.info("Updating person with ID: {}");
+    	return personRepository.save(updatedPerson);
     }
+    */
     
-    public String deletePerson(Long personId) {
-    	personRepository.deleteById(personId);
-    	return "Person deleted successfully.";
+    public Boolean deletePersonById(Long personId) {
+        log.info("Deleting person with ID: {}");
+        personRepository.deleteById(personId);
+    	return Boolean.TRUE;
     }
 
 }
